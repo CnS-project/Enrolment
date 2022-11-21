@@ -1,11 +1,11 @@
-import { axios_post } from "./api/api";
-import "./styles/login.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { axios_post } from './api/api';
+import './styles/login.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [userId, setUserId] = useState("");
-  const [userPw, setUserPw] = useState("");
+  const [userId, setUserId] = useState('');
+  const [userPw, setUserPw] = useState('');
   const navigate = useNavigate();
   const typingId = (event) => {
     setUserId(event.target.value);
@@ -19,7 +19,7 @@ function Login() {
     //   password: userPw,
     // });
     // console.log(response);
-    navigate("/");
+    navigate('/');
   };
   return (
     <div className="Login">
