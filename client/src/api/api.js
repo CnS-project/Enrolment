@@ -1,20 +1,24 @@
-import axios from "axios";
+import axios from 'axios';
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = 'http://localhost:3000';
 const subUrl = {
-  login: "/login",
+  login: '/login',
 };
 
 export const axios_post = async (url, sendData) => {
   try {
-    const response = await axios.post(`${baseUrl}${subUrl[url]}`, sendData, {
-      headers: {
-        "Content-Type": "application/json",
+    const response = await axios.post(
+      `${baseUrl}${subUrl[url]}`,
+      JSON.stringify(sendData),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    });
+    );
     return response;
   } catch (err) {
-    console.log("post통신에러: " + err);
+    console.log('post통신에러: ' + err);
   }
 };
 
@@ -25,11 +29,11 @@ export const axios_get = async (url, sendData) => {
       { params: sendData },
       {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-      }
+      },
     );
   } catch (err) {
-    console.log("get통신에러 : " + err);
+    console.log('get통신에러 : ' + err);
   }
 };

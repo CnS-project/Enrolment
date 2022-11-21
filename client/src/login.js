@@ -1,11 +1,11 @@
-import { axios_post } from "./api/api";
-import "./styles/login.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { axios_post } from './api/api';
+import './styles/login.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [userId, setUserId] = useState("");
-  const [userPw, setUserPw] = useState("");
+  const [userId, setUserId] = useState('');
+  const [userPw, setUserPw] = useState('');
   const navigate = useNavigate();
   const typingId = (event) => {
     setUserId(event.target.value);
@@ -14,12 +14,13 @@ function Login() {
     setUserPw(event.target.value);
   };
   const submit = async () => {
+    // TODO reponse 200 시 로그인 구현
     // let response = await axios_post("login", {
-    //   id: userId,
+    //   studentId: userId,
     //   password: userPw,
     // });
     // console.log(response);
-    navigate("/");
+    navigate('/');
   };
   return (
     <div className="Login">
