@@ -1,0 +1,13 @@
+#lecture-table {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+td {
+  border: 1px solid black;
+  width: 150px;
+}
+
+thead {
+  background-color: lightgray;
+}
