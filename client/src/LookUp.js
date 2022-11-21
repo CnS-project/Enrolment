@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import './styles/lookUp.css';
 function LookUp() {
   const THEAD_LIST = [
     '학년',
@@ -21,28 +21,162 @@ function LookUp() {
   return (
     <div>
       <h1>신청내역 조회</h1>
-      <table>
-        <thead>
-          <tr>
-            {THEAD_LIST.map((data, idx) => (
-              <td key={idx}>{data}</td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>3</td>
-            <td>소프트웨어공학</td>
-            <td>1000-1234</td>
-            <td>00</td>
-            <td>김현수</td>
-            <td>40/40</td>
-            <td>
-              <button onClick={cancleEvnet}>취소</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="tableDiv">
+        <table>
+          <thead>
+            <tr>
+              {THEAD_LIST.map((data, idx) => (
+                <td key={idx}>{data}</td>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>소프트웨어공학</td>
+              <td>1000-1234</td>
+              <td>00</td>
+              <td>김현수</td>
+              <td>40/40</td>
+              <td>
+                <button onClick={cancleEvnet}>취소</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
