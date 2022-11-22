@@ -14,22 +14,40 @@ export default function Leacture() {
     { key: 'capacity', title: '정원' },
   ];
   const [word, setWord] = useState('');
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState([
+    {
+      targetGrade: 1,
+      credit: 1,
+      name: '김',
+      courseNumber: 1,
+      classNumber: 1,
+      professor: '김현수',
+      capacity: 1,
+    },
+    {
+      targetGrade: 2,
+      credit: 2,
+      name: '배',
+      courseNumber: 2,
+      classNumber: 2,
+      professor: '김2현수',
+      capacity: 2,
+    },
+  ]);
   const [courseNumber, setCourseNumber] = useState();
   const [classNumber, setClassNumber] = useState();
   const [sortTarget, setsortTarget] = useState({ key: 'name', count: 0 });
   const arrowMark = ['', '↑', '↓'];
 
   useEffect(() => {
-    setCourses((prev) => {
-      return prev.sort((a, b) => {
-        if (sortTarget.count === 1) {
+    setCourses((prev) =>
+      [...prev].sort((a, b) => {
+        if (sortTarget.count === 0 || sortTarget.count === 1) {
           return a[sortTarget.key] - b[sortTarget.key];
         } else if (sortTarget.count === 2)
           return b[sortTarget.key] - a[sortTarget.key];
-        return false;
-      });
-    });
+      }),
+    );
   }, [sortTarget]);
   return (
     <div>
@@ -72,19 +90,19 @@ export default function Leacture() {
       <table id="lecture-table">
         <thead>
           <tr>
-            {THEAD_LIST.map(({ title }, index) => (
+            {THEAD_LIST.map(({ key, title }, index) => (
               <th
                 key={title}
                 onClick={() => {
                   if (index !== 0)
                     setsortTarget((prev) => {
-                      if (prev.thNumber === index)
+                      if (prev.key === key)
                         return { ...prev, count: (prev.count + 1) % 3 };
-                      return { thNumber: index, count: 1 };
+                      return { key, count: 1 };
                     });
                 }}
               >
-                {sortTarget.thNumber === index
+                {sortTarget.key === key
                   ? title + arrowMark[sortTarget.count]
                   : title}
               </th>
@@ -92,50 +110,48 @@ export default function Leacture() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {courses.map((course) => {
-              const {
-                targetGrade,
-                credit,
-                name,
-                courseNumber,
-                classNumber,
-                professor,
-                capacity,
-              } = course;
-              return (
-                <>
-                  <td>
-                    <button>신청</button>
-                  </td>
-                  <td>
-                    <span>{name}</span>
-                  </td>
-                  <td>
-                    <sapn>{courseNumber}</sapn>
-                  </td>
-                  <td>
-                    <sapn>{classNumber}</sapn>
-                  </td>
-                  <td>
-                    <span>컴퓨터융합학부</span>
-                  </td>
-                  <td>
-                    <span>{targetGrade}</span>
-                  </td>
-                  <td>
-                    <span>{professor}</span>
-                  </td>
-                  <td>
-                    <span>{credit}</span>
-                  </td>
-                  <td>
-                    <span>{capacity}</span>
-                  </td>
-                </>
-              );
-            })}
-          </tr>
+          {courses.map((course) => {
+            const {
+              targetGrade,
+              credit,
+              name,
+              courseNumber,
+              classNumber,
+              professor,
+              capacity,
+            } = course;
+            return (
+              <tr key={course.courseNumber}>
+                <td>
+                  <button>신청</button>
+                </td>
+                <td>
+                  <span>{name}</span>
+                </td>
+                <td>
+                  <span>{courseNumber}</span>
+                </td>
+                <td>
+                  <span>{classNumber}</span>
+                </td>
+                <td>
+                  <span>컴퓨터융합학부</span>
+                </td>
+                <td>
+                  <span>{targetGrade}</span>
+                </td>
+                <td>
+                  <span>{professor}</span>
+                </td>
+                <td>
+                  <span>{credit}</span>
+                </td>
+                <td>
+                  <span>{capacity}</span>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
