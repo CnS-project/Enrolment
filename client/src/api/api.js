@@ -3,6 +3,7 @@ import axios from 'axios';
 const baseUrl = 'http://15.164.41.8:8080';
 const subUrl = {
   login: '/login',
+  logout: '/users/logout',
   courses: '/courses',
   register: '/users/registration-course',
   filter: '/users/filtering',
@@ -38,6 +39,12 @@ export const axios_get = async (url, sendData) => {
   }
 };
 
+export const axios_put = async (url) => {
+  try {
+    const response = await axios.put(`${baseUrl}${subUrl[url]}`);
+    console.log(response);
+  } catch (err) {}
+};
 export const getAllCourses = async () => {
   try {
     const courses = await axios_get('courses');
@@ -72,4 +79,9 @@ export const getFilteredCourses = async (word) => {
   } catch (err) {
     console.log('get통신에러 : ' + err);
   }
+};
+
+export const logOut = async () => {
+  const res = await axios_put('/users/logout');
+  console.log(res);
 };
