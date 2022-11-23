@@ -39,6 +39,8 @@ export default function Leacture() {
       );
   }, [sortTarget]);
   return (
+    <div>
+      <div>
         <label>
           검색 : <input type="text" />
         </label>
@@ -52,84 +54,87 @@ export default function Leacture() {
           <button type="submit">신청</button>
         </label>
       </div>
-      <table id="lecture-table">
-        <thead>
-          {THEAD_LIST.map((title) => (
-            <td>{title}</td>
-          ))}
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <button>신청</button>
-            </td>
-            <td>
-              <span>소프트웨어공학</span>
-            </td>
-            <td>
-              <sapn>1000-1234</sapn>
-            </td>
-            <td>
-              <sapn>00</sapn>
-            </td>
-            <td>
-              <span>컴퓨터융합학부</span>
-            </td>
-            <td>
-              <span>1</span>
-            </td>
-            <td>
-              <span>김현수</span>
-            </td>
-          </tr>
-        <div>
-          <select onChange={(e) => setSelectedSort(e.target.value)}>
-            <option value="name">과목</option>
-            <option value="courseNumber">과목 번호</option>
-            <option value="professor">교수명</option>
-            <option value="grade">학년</option>
-            <option value="major">학과</option>
-          </select>{' '}
-          :{' '}
-          <input
-            type="text"
-            value={word}
-            onChange={(e) => setWord(e.target.value)}
-          />{' '}
-          <button
-            onClick={async () => {
-              const filteredData = await getFilteredCourses({
-                [selectedSort]: word,
-              });
-              setCourses(filteredData);
-            }}
-          >
-            검색
-          </button>
-        </div>
-        <br />
-        <label>
-          과목 번호-분반{' '}
-          <input
-            type="text"
-            className="lecture-number"
-            value={courseNumber}
-            onChange={(e) => setCourseNumber(e.target.value)}
-          />
-          <span> - </span>
-          <input
-            type="text"
-            id="lecture-class-number"
-            value={classNumber}
-            onChange={(e) => setClassNumber(e.target.value)}
-          />
-          <button
-            type="submit"
-            onClick={() => registerCourse({ courseNumber, classNumber })}
-          >
-            신청
-          </button>
-        </label>
+      <div>
+        <table id="lecture-table">
+          <thead>
+            {THEAD_LIST.map((title) => (
+              <td>{title}</td>
+            ))}
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <button>신청</button>
+              </td>
+              <td>
+                <span>소프트웨어공학</span>
+              </td>
+              <td>
+                <sapn>1000-1234</sapn>
+              </td>
+              <td>
+                <sapn>00</sapn>
+              </td>
+              <td>
+                <span>컴퓨터융합학부</span>
+              </td>
+              <td>
+                <span>1</span>
+              </td>
+              <td>
+                <span>김현수</span>
+              </td>
+            </tr>
+            <div>
+              <select onChange={(e) => setSelectedSort(e.target.value)}>
+                <option value="name">과목</option>
+                <option value="courseNumber">과목 번호</option>
+                <option value="professor">교수명</option>
+                <option value="grade">학년</option>
+                <option value="major">학과</option>
+              </select>{' '}
+              :{' '}
+              <input
+                type="text"
+                value={word}
+                onChange={(e) => setWord(e.target.value)}
+              />{' '}
+              <button
+                onClick={async () => {
+                  const filteredData = await getFilteredCourses({
+                    [selectedSort]: word,
+                  });
+                  setCourses(filteredData);
+                }}
+              >
+                검색
+              </button>
+            </div>
+            <br />
+            <label>
+              과목 번호-분반{' '}
+              <input
+                type="text"
+                className="lecture-number"
+                value={courseNumber}
+                onChange={(e) => setCourseNumber(e.target.value)}
+              />
+              <span> - </span>
+              <input
+                type="text"
+                id="lecture-class-number"
+                value={classNumber}
+                onChange={(e) => setClassNumber(e.target.value)}
+              />
+              <button
+                type="submit"
+                onClick={() => registerCourse({ courseNumber, classNumber })}
+              >
+                신청
+              </button>
+            </label>
+          </tbody>
+        </table>
       </div>
       <div>항목 클릭 시 정렬 가능</div>
       <table id="lecture-table">
