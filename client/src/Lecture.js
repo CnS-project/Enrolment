@@ -134,7 +134,13 @@ export default function Leacture() {
             return (
               <tr key={'key' + course.courseNumber + course.classNumber}>
                 <td>
-                  <button>신청</button>
+                  <button
+                    onClick={() =>
+                      registerCourse({ courseNumber, classNumber })
+                    }
+                  >
+                    신청
+                  </button>
                 </td>
                 <td>
                   <span>{name}</span>
