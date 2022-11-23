@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const baseUrl = 'http://3.35.209.208:8080';
+const baseUrl = 'http://15.164.41.8:8080';
 const subUrl = {
   login: '/login',
   courses: '/courses',
   register: '/users/registration-course',
+  filter: '/users/filtering',
 };
 
 export const axios_post = async (url, sendData) => {
@@ -40,19 +41,33 @@ export const axios_get = async (url, sendData) => {
 export const getAllCourses = async () => {
   try {
     const courses = await axios_get('courses');
-    console.log(courses);
-    // return courses;
+    return courses.data.courses;
   } catch (err) {
     console.log(err);
   }
 };
 
-export const registerCourse = async (sendData) => {
+export const registerCourse = async () => {
   try {
-    const response = await axios_post('register', sendData);
+    // const response = await axios_post('register', sendData);
   } catch (err) {
     console.log(err);
   }
 };
 
-getAllCourses();
+export const getFilteredCourses = async (word) => {
+  try {
+    const sendData = {
+      courseNumber: '',
+      name: '',
+      professor: '',
+      grade: '',
+      major: '',
+      ...word,
+    };
+    const courses = await axios_get('filter', sendData);
+    return courses.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
