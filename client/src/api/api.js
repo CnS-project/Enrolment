@@ -8,6 +8,7 @@ const subUrl = {
   courses: '/courses',
   register: '/users/registration-course',
   filter: '/users/filtering',
+  timing: '/admin/timing',
 };
 
 export const axios_post = async (url, sendData) => {
@@ -40,10 +41,14 @@ export const axios_get = async (url, sendData) => {
   }
 };
 
-export const axios_put = async (url) => {
+export const axios_put = async (url, sendData = null) => {
   try {
-    const response = await axios.put(`${baseUrl}${subUrl[url]}`);
-    console.log(response);
+    const response = await axios.put(`${baseUrl}${subUrl[url]}`, sendData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return response;
   } catch (err) {}
 };
 export const getAllCourses = async () => {

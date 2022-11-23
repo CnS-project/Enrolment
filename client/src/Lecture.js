@@ -5,6 +5,7 @@ import {
   getFilteredCourses,
   logOut,
   registerCourse,
+  axios_post,
 } from './api/api';
 import './styles/lecture.css';
 export default function Leacture() {
@@ -26,6 +27,15 @@ export default function Leacture() {
   const [sortTarget, setsortTarget] = useState({ key: 'name', count: 0 });
   const [selectedSort, setSelectedSort] = useState('name');
   const arrowMark = ['', '↑', '↓'];
+
+  const regist = async (courseNumber, classNumber) => {
+    console.log('regist');
+    const response = await axios_post('courses', {
+      courseNumber: Number(courseNumber),
+      classNumber: Number(classNumber),
+    });
+    console.log(response.status);
+  };
 
   useEffect(() => {
     getAllCourses().then((res) => {
@@ -91,7 +101,7 @@ export default function Leacture() {
           />
           <button
             type="submit"
-            onClick={() => registerCourse({ courseNumber, classNumber })}
+            onClick={() => regist(courseNumber, classNumber)}
           >
             신청
           </button>
@@ -134,7 +144,12 @@ export default function Leacture() {
             return (
               <tr key={'key' + course.courseNumber + course.classNumber}>
                 <td>
-                  <button>신청</button>
+                  <button
+                    type="submit"
+                    onClick={() => regist(courseNumber, classNumber)}
+                  >
+                    신청
+                  </button>
                 </td>
                 <td>
                   <span>{name}</span>
