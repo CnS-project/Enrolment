@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'http://3.35.209.208:8080';
 const subUrl = {
   login: '/login',
   courses: '/courses',
@@ -40,6 +40,7 @@ export const axios_get = async (url, sendData) => {
 export const getAllCourses = async () => {
   try {
     const courses = await axios_get('courses');
+    console.log(courses);
     // return courses;
   } catch (err) {
     console.log(err);
@@ -53,3 +54,5 @@ export const registerCourse = async (sendData) => {
     console.log(err);
   }
 };
+
+getAllCourses();

@@ -37,15 +37,17 @@ export default function Leacture() {
   const [courseNumber, setCourseNumber] = useState();
   const [classNumber, setClassNumber] = useState();
   const [sortTarget, setsortTarget] = useState({ key: 'name', count: 0 });
+  const [selectedSort, setSelectedSort] = useState('name');
   const arrowMark = ['', '↑', '↓'];
 
   useEffect(() => {
     setCourses((prev) =>
       [...prev].sort((a, b) => {
         if (sortTarget.count === 0 || sortTarget.count === 1) {
-          return a[sortTarget.key] - b[sortTarget.key];
-        } else if (sortTarget.count === 2)
-          return b[sortTarget.key] - a[sortTarget.key];
+          return a[sortTarget.key] > b[sortTarget.key] ? 1 : -1;
+        } else if (sortTarget.count === 2) {
+          return b[sortTarget.key] > a[sortTarget.key] ? 1 : -1;
+        }
       }),
     );
   }, [sortTarget]);
@@ -53,15 +55,22 @@ export default function Leacture() {
     <div>
       <h1>수강 신청</h1>
       <div>
-        <label>
-          검색 :{' '}
+        <div>
+          <select onChange={(e) => setSelectedSort(e.target.value)}>
+            <option value="name">과목</option>
+            <option value="courseNumber">과목 번호</option>
+            <option value="professor">교수명</option>
+            <option value="grade">학년</option>
+            <option value="major">학과</option>
+          </select>{' '}
+          :{' '}
           <input
             type="text"
             value={word}
             onChange={(e) => setWord(e.target.value)}
           />{' '}
           <button>검색</button>
-        </label>
+        </div>
         <br />
         <label>
           과목 번호-분반{' '}
