@@ -77,7 +77,7 @@ export const getFilteredCourses = async (word) => {
     const courses = await axios_get('filter', sendData);
     return courses.data;
   } catch (err) {
-    console.log(err);
+    console.log('get통신에러 : ' + err);
   }
 };
 
