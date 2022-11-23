@@ -34,6 +34,7 @@ function Login() {
         password: userPw,
       });
       console.log(response);
+      console.log(response.headers['Set - Cookie']);
       if (response.status === 201) {
         setTimeout(() => console.log('after'), 3000);
         navigate('/lecture');
