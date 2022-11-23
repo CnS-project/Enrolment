@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const baseUrl = 'http://15.164.41.8:8080';
 const subUrl = {
-  login: '/login',
+  login: '/users/login',
+  adminLogin: '/admin/login',
   courses: '/courses',
   register: '/users/registration-course',
   filter: '/users/filtering',
