@@ -15,8 +15,8 @@ export default function Leacture() {
   ];
   const [word, setWord] = useState('');
   const [courses, setCourses] = useState([]);
-  const [courseNumber, setCourseNumber] = useState();
-  const [classNumber, setClassNumber] = useState();
+  const [courseNumber, setCourseNumber] = useState('');
+  const [classNumber, setClassNumber] = useState('');
   const [sortTarget, setsortTarget] = useState({ key: 'name', count: 0 });
   const [selectedSort, setSelectedSort] = useState('name');
   const arrowMark = ['', '↑', '↓'];

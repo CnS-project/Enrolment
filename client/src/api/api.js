@@ -47,9 +47,11 @@ export const getAllCourses = async () => {
   }
 };
 
-export const registerCourse = async () => {
+export const registerCourse = async (sendData) => {
   try {
-    // const response = await axios_post('register', sendData);
+    console.log(sendData);
+    const response = await axios_post('register', sendData);
+    console.log(response);
   } catch (err) {
     console.log(err);
   }
