@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const [userId, setUserId] = useState('');
   const [userPw, setUserPw] = useState('');
+  const [admincheck, setAdminCheck] = useState(false);
   const navigate = useNavigate();
   const typingId = (event) => {
     setUserId(event.target.value);
@@ -13,14 +14,25 @@ function Login() {
   const typingPw = (event) => {
     setUserPw(event.target.value);
   };
+  const changeState = () => {
+    setAdminCheck((check) => !check);
+  };
   const submit = async () => {
-    // TODO reponse 200 시 로그인 구현
-    // let response = await axios_post("login", {
-    //   studentId: userId,
-    //   password: userPw,
-    // });
-    // console.log(response);
-    navigate('/');
+    // reponse 201 시 로그인 구현
+    if (admincheck) {
+      //관리자 로그인
+    } else {
+      const response = await axios_post('login', {
+        studentId: Number(userId),
+        password: userPw,
+      });
+      console.log(response);
+      if (response.status === 201) {
+        navigate('/lecture');
+      } else {
+        alert('잘못된 정보입니다.');
+      }
+    }
   };
   return (
     <div className="Login">
@@ -36,6 +48,9 @@ function Login() {
         value={userPw}
         onChange={(event) => typingPw(event)}
       ></input>
+      <br />
+      <input type="checkbox" value={admincheck} onClick={changeState} />
+      <label>관리자</label>
       <br />
       <button onClick={submit}>로그인</button>
     </div>

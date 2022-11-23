@@ -12,8 +12,7 @@ root.render(
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />}></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/" element={<Login />}></Route>
           <Route path="/lecture" element={<Leacture />}></Route>
           <Route path="/lookUp" element={<LookUp />}></Route>
         </Routes>
