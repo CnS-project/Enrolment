@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { registerCourse } from './api/api';
+import { getAllCourses, getFilteredCourses, registerCourse } from './api/api';
 import './styles/lecture.css';
 export default function Leacture() {
   const THEAD_LIST = [
@@ -14,54 +14,59 @@ export default function Leacture() {
     { key: 'capacity', title: '정원' },
   ];
   const [word, setWord] = useState('');
-  const [courses, setCourses] = useState([
-    {
-      targetGrade: 1,
-      credit: 1,
-      name: '김',
-      courseNumber: 1,
-      classNumber: 1,
-      professor: '김현수',
-      capacity: 1,
-    },
-    {
-      targetGrade: 2,
-      credit: 2,
-      name: '배',
-      courseNumber: 2,
-      classNumber: 2,
-      professor: '김2현수',
-      capacity: 2,
-    },
-  ]);
+  const [courses, setCourses] = useState([]);
   const [courseNumber, setCourseNumber] = useState();
   const [classNumber, setClassNumber] = useState();
   const [sortTarget, setsortTarget] = useState({ key: 'name', count: 0 });
+  const [selectedSort, setSelectedSort] = useState('name');
   const arrowMark = ['', '↑', '↓'];
 
   useEffect(() => {
-    setCourses((prev) =>
-      [...prev].sort((a, b) => {
-        if (sortTarget.count === 0 || sortTarget.count === 1) {
-          return a[sortTarget.key] - b[sortTarget.key];
-        } else if (sortTarget.count === 2)
-          return b[sortTarget.key] - a[sortTarget.key];
-      }),
-    );
+    getAllCourses().then((res) => {
+      setCourses(res);
+    });
+  }, []);
+  useEffect(() => {
+    if (courses !== [])
+      setCourses((prev) =>
+        [...prev].sort((a, b) => {
+          if (sortTarget.count === 0 || sortTarget.count === 1) {
+            return a[sortTarget.key] > b[sortTarget.key] ? 1 : -1;
+          } else if (sortTarget.count === 2) {
+            return b[sortTarget.key] > a[sortTarget.key] ? 1 : -1;
+          }
+        }),
+      );
   }, [sortTarget]);
   return (
     <div>
       <h1>수강 신청</h1>
       <div>
-        <label>
-          검색 :{' '}
+        <div>
+          <select onChange={(e) => setSelectedSort(e.target.value)}>
+            <option value="name">과목</option>
+            <option value="courseNumber">과목 번호</option>
+            <option value="professor">교수명</option>
+            <option value="grade">학년</option>
+            <option value="major">학과</option>
+          </select>{' '}
+          :{' '}
           <input
             type="text"
             value={word}
             onChange={(e) => setWord(e.target.value)}
           />{' '}
-          <button>검색</button>
-        </label>
+          <button
+            onClick={async () => {
+              const filteredData = await getFilteredCourses({
+                [selectedSort]: word,
+              });
+              setCourses(filteredData);
+            }}
+          >
+            검색
+          </button>
+        </div>
         <br />
         <label>
           과목 번호-분반{' '}
@@ -121,7 +126,7 @@ export default function Leacture() {
               capacity,
             } = course;
             return (
-              <tr key={course.courseNumber}>
+              <tr key={'key' + course.courseNumber + course.classNumber}>
                 <td>
                   <button>신청</button>
                 </td>
