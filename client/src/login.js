@@ -14,8 +14,9 @@ function Login() {
     setUserPw(event.target.value);
   };
   const submit = async () => {
+    // TODO reponse 200 시 로그인 구현
     // let response = await axios_post("login", {
-    //   id: userId,
+    //   studentId: userId,
     //   password: userPw,
     // });
     // console.log(response);
