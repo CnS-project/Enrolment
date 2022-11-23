@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import { getAllCourses, getFilteredCourses, registerCourse } from './api/api';
+import { Link } from 'react-router-dom';
+import {
+  getAllCourses,
+  getFilteredCourses,
+  logOut,
+  registerCourse,
+} from './api/api';
 import './styles/lecture.css';
 export default function Leacture() {
   const THEAD_LIST = [
@@ -41,6 +47,16 @@ export default function Leacture() {
   return (
     <div>
       <h1>수강 신청</h1>
+      <Link to="/lookUp">
+        <button>마이페이지</button>
+      </Link>
+      <button
+        onClick={() => {
+          logOut();
+        }}
+      >
+        로그아웃
+      </button>
       <div>
         <div>
           <select onChange={(e) => setSelectedSort(e.target.value)}>
