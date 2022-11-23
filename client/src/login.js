@@ -18,9 +18,16 @@ function Login() {
     setAdminCheck((check) => !check);
   };
   const submit = async () => {
-    // reponse 201 시 로그인 구현
     if (admincheck) {
-      //관리자 로그인
+      const response = await axios_post('adminLogin', {
+        administratorId: Number(userId),
+        password: userPw,
+      });
+      if (response.status === 201) {
+        navigate('/admin');
+      } else {
+        alert('잘못된 정보입니다.');
+      }
     } else {
       const response = await axios_post('login', {
         studentId: Number(userId),
@@ -29,6 +36,7 @@ function Login() {
       console.log(response);
       console.log(response.headers['Set - Cookie']);
       if (response.status === 201) {
+        setTimeout(() => console.log('after'), 3000);
         navigate('/lecture');
       } else {
         alert('잘못된 정보입니다.');
